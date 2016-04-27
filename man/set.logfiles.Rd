@@ -2,7 +2,7 @@
 % Please edit documentation in R/jlogger.R
 \name{set.logfiles}
 \alias{set.logfiles}
-\title{Sets the log files of JLogger}
+\title{Setting buffers}
 \usage{
 set.logfiles(logger, files)
 }

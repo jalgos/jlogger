@@ -2,7 +2,7 @@
 % Please edit documentation in R/jlogger.R
 \name{JLoggerReset}
 \alias{JLoggerReset}
-\title{Resets all the JLoggers}
+\title{JLoggerReset}
 \usage{
 JLoggerReset()
 }

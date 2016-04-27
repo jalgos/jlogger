@@ -2,7 +2,7 @@
 % Please edit documentation in R/jlogger.R
 \name{jlflush}
 \alias{jlflush}
-\title{Flushes the current buffers.}
+\title{Flushing buffers}
 \usage{
 jlflush(jlogger)
 }

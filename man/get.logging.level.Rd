@@ -2,7 +2,7 @@
 % Please edit documentation in R/jlogger.R
 \name{get.logging.level}
 \alias{get.logging.level}
-\title{Gets the logging level of a JLogger}
+\title{Getting current logging level}
 \usage{
 get.logging.level(logger)
 }

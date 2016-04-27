@@ -2,7 +2,7 @@
 % Please edit documentation in R/jlogger.R
 \name{JLoggerFactory}
 \alias{JLoggerFactory}
-\title{Get a logger for the given handle. Creates it if it's missing.}
+\title{JLogger Factory}
 \usage{
 JLoggerFactory(name, ..., reset = FALSE)
 }

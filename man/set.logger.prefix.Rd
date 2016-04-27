@@ -2,7 +2,7 @@
 % Please edit documentation in R/jlogger.R
 \name{set.logger.prefix}
 \alias{set.logger.prefix}
-\title{Sets the logger's prefix (string that is printed after the date)}
+\title{Setting prefix}
 \usage{
 set.logger.prefix(logger, prefix)
 }

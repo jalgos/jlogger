@@ -1,6 +1,7 @@
 ## logger that uses cat instead of print
 ## depends on util.R
 
+
 JLogger <- setRefClass("JLogger", fields = list(m.level = "integer", m.file = "character"))
 JLOGGER.TRACE <- 1L
 JLOGGER.DEBUG <- 2L
@@ -12,6 +13,8 @@ JLOGGER.LEVELS <- c("TRACE", "DEBUG", "INFO", "WARNING", "ERROR", "FATAL")
 JLOGGER.DEFAULT.LEVEL <- JLOGGER.DEBUG
 JLOGGER.ENV <- new.env()
 
+#' JLogger Factory
+#' 
 #' Get a logger for the given handle. Creates it if it's missing.
 #' @param name Handle for the JLogger
 #' @param ... Parameters to be passes to the constructor of JLogger. The parameters are files, prefix, level, config, logconfig
@@ -23,6 +26,8 @@ JLoggerFactory <- function(name, ..., reset = FALSE)
     get(name, JLOGGER.ENV)
 }
 
+#' JLoggerReset
+#' 
 #' Resets all the JLoggers
 #' @export
 JLoggerReset <- function()
@@ -30,6 +35,8 @@ JLoggerReset <- function()
     rm(list = ls(env = JLOGGER.ENV), envir = JLOGGER.ENV)
 }
 
+#' Set an indivual JLogger
+#' 
 #' Manually maps a logger to a handle
 #' @param name handle to be used
 #' @param jlogger logger to be mapped
@@ -168,17 +175,11 @@ jl.print.fatal <- function(jlogger, ...) JLOGGER.do(jlogger, JLOGGER.FATAL, JLOG
 
 #' @name logging.funs
 #' @title Functions used to log
-#' JLoggers have several logging levels ranking as such: TRACE, DEBUG, INFO, WARNING, ERROR, FATAL. Establishing the logging level to a given rank will turn off messages of lower rank and print all other messages.
-#' For example setting the level to INFO will print infos, warnings, errors and fatal messages.
-#' A good practice to use appropriate logging level could be the following. Trace messages are there to fully trace each action a complex algorithm takes. This is for development purposes.
-#' Debug messages are here for testing when a programs runs but breaks often. It allows the developper to have a good idea though not exhaustive of the actions the program took.
-#' Info messages are messages that you will want the end user to see. They should give information about the current state of the program.
-#' Warnings indicate that the program is facing an edge case, had to make assumptions about some data, had to convert some data, had to skip or make some extra steps, etc...
-#' Warnings can occur without impacting the functionning of the program.
-#' Error messages are to be put when the program is out of its range of function. It does not necessarily mean that the program cannot continue but it can mean that a subtask had to be aborted due to a dubious state.
-#' Fatal messages are the highest level of logging and they indicate that the program is about to stop due to an error it cannot recover from and anything more severe.
-#' JLoggers offer several ways of messaging. \code{jlog*} is a simple wrapper around \code{cat}, \code{jlwrite*} wraps \code{write} and \code{jlprint*} wrap \code{print}. Each function categories can be use to handle different types of data.
-#' @param jlogger The JLogger object. It's level combined with the functions level will decide wether the message is logged.
+#'
+#' @description
+#' Utility function to log messages. Several kind of logging functions are provided for handling different use cases. Each type of function handles 6 levels of logging ranging from TRACE to FATAL.
+#' @template package.description
+#' @param jlogger The JLogger object. It's level combined with the functions level will decide whether the message is logged.
 #' @param ... Objects to be printed. They will be handled by the lower level functions
 NULL
 
@@ -283,7 +284,8 @@ jl.flush <- function(jlogger)
     lapply(jlogger$m.files, JLOGGER.flush)
     invisible()
 }
-
+#' Flushing buffers
+#' 
 #' Flushes the current buffers.
 #' @param jlogger JLogger object
 #' @export
@@ -366,18 +368,25 @@ setMethod("jlwrite.fatal", "NULL", function(jlogger, ...){})
 setMethod("jlprint.fatal", "NULL", function(jlogger, ...){})
 setMethod("jlflush", "NULL", function(jlogger){})
 
+
+#' Getting buffers
+#' 
 #' Get the buffers a JLogger writes to
 #' @param logger JLogger object
 #' @return Vector of file paths. Empty character is the console
 #' @export
 get.logfiles <- function(logger) logger$m.files
 
+#' Getting current logging level
+#'
 #' Gets the logging level of a JLogger
 #' @param logger JLogger object
 #' @return Logging level
 #' @export
 get.logging.level <- function(logger) logger$m.level
 
+#' Setting buffers
+#'
 #' Sets the log files of JLogger
 #' @param logger JLogger object
 #' @param files Vector of file paths. Empty character is the console
@@ -389,6 +398,8 @@ set.logfiles <- function(logger,
     logger$m.files <- unique(files)
 }
 
+#' Adding new buffers
+#'
 #' Adds log files to the JLogger files list
 #' @param logger JLogger object
 #' @param files Vector of file paths. Empty character is the console
@@ -400,6 +411,8 @@ add.logfiles <- function(logger,
     set.logfiles(logger, c(logger$m.files, files))
 }
 
+#' Setting logging level
+#'
 #' Sets the logging level of a JLogger
 #' @param logger JLogger object
 #' @param level a JLogger level
@@ -411,6 +424,9 @@ set.logging.level <- function(logger,
     logger$m.level <- level 
 }
 
+
+#' Setting prefix
+#'
 #' Sets the logger's prefix (string that is printed after the date)
 #' @param logger JLogger object
 #' @param prefix a string

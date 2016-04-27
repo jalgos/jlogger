@@ -2,7 +2,7 @@
 % Please edit documentation in R/jlogger.R
 \name{set.logging.level}
 \alias{set.logging.level}
-\title{Sets the logging level of a JLogger}
+\title{Setting logging level}
 \usage{
 set.logging.level(logger, level)
 }

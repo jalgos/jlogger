@@ -2,7 +2,7 @@
 % Please edit documentation in R/jlogger.R
 \name{SetJLogger}
 \alias{SetJLogger}
-\title{Manually maps a logger to a handle}
+\title{Set an indivual JLogger}
 \usage{
 SetJLogger(name, jlogger, ...)
 }

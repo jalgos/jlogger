@@ -2,7 +2,7 @@
 % Please edit documentation in R/jlogger.R
 \name{add.logfiles}
 \alias{add.logfiles}
-\title{Adds log files to the JLogger files list}
+\title{Adding new buffers}
 \usage{
 add.logfiles(logger, files)
 }

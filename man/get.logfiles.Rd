@@ -2,7 +2,7 @@
 % Please edit documentation in R/jlogger.R
 \name{get.logfiles}
 \alias{get.logfiles}
-\title{Get the buffers a JLogger writes to}
+\title{Getting buffers}
 \usage{
 get.logfiles(logger)
 }
