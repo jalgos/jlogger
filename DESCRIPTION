@@ -2,9 +2,13 @@ Package: jlogger
 Title: A simple logger written with cat
 Version: 0.0.0.9000
 Authors@R: person("Sébastien", "Lamy de la Chapelle", email = "sebastien@jalgos.com", role = c("aut", "cre"))
-Description: A Logger similar to many other solution written to log to the console, to files and in the pbdR context.
-Depends: R (>= 3.2.5)
-Suggests: pbdDEMO
+Description: A Logger similar to many other solution written to log to the
+    console, to files and in the pbdR context.
+Depends:
+    R (>= 3.2.5)
+Suggests:
+    pbdDEMO
 License: Jalgos License
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 5.0.1
