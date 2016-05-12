@@ -49,11 +49,20 @@ SetJLogger <- function(name, jlogger, ...)
 
 ## We want the JLogger to be a ref class so the prefix can be changed without having to be propagated
 ## m.files can be several file if we want to write to several connections at the same time
+#' JLogger
+#'
+#' Object that handles complex logging
+#' @slot m.files buffers to which the logger writes to
+#' @slot m.level debugging level
+#' @slot m.name Handle
+#' @slot m.prefix Prefix to print before messages
+#' @exportClass JLogger
+#' @export JLogger
 JLogger <- setRefClass("JLogger",
-                       fields = {list(m.files = "character",
-                                      m.level = "integer",
-                                      m.name = "character",
-                                      m.prefix = "character")})
+                       fields = list(m.files = "character",
+                                     m.level = "integer",
+                                     m.name = "character",
+                                     m.prefix = "character"))
 
 JLOGGER.init <- function(name = "",
                          files = "",
