@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: person("Sébastien", "Lamy de la Chapelle", email = "sebastien@jalgos.com", role = c("aut", "cre"))
 Description: A Logger built on top of cat, print and write, that allows the user to seamlessly log messages to files or the console
 Depends:
-    R (>= 3.2.5)
+    R (>= 3.2.0)
 Suggests:
     pbdDEMO
 License: Jalgos License
