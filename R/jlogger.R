@@ -3,14 +3,41 @@
 
 
 JLogger <- setRefClass("JLogger", fields = list(m.level = "integer", m.file = "character"))
+
+#' @title Logging levels
+#' @name logging.levels
+#' @description Constants for logging level
+#' @export
 JLOGGER.TRACE <- 1L
+
+#' @rdname logging.levels
+#' @export
 JLOGGER.DEBUG <- 2L
+
+#' @rdname logging.levels
+#' @export
 JLOGGER.INFO <- 3L
+
+#' @rdname logging.levels
+#' @export
 JLOGGER.WARN <- 4L
+
+#' @rdname logging.levels
+#' @export
 JLOGGER.ERROR <- 5L
+
+#' @rdname logging.levels
+#' @export
 JLOGGER.FATAL <- 6L
+
+#' @rdname logging.levels
+#' @export
 JLOGGER.LEVELS <- c("TRACE", "DEBUG", "INFO", "WARNING", "ERROR", "FATAL")
+
+#' @rdname logging.levels
+#' @export
 JLOGGER.DEFAULT.LEVEL <- JLOGGER.DEBUG
+
 JLOGGER.ENV <- new.env()
 
 #' JLogger Factory
