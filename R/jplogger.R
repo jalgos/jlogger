@@ -6,22 +6,22 @@ jlp.cat <- function(...)
 JPLogger <- setRefClass("JPLogger", contains = "JLogger")
 
 #' @export
-setMethod("jlog.trace", "JPLogger", function(jlogger, ..., cat_fun = jlp.cat) callNextMethod(jlogger, cat_fun = cat_fun, ...))
+setMethod("jlog.trace", "JPLogger", function(jlogger, ..., cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
 
 #' @export
-setMethod("jlog.debug", "JPLogger", function(jlogger, ..., cat_fun = jlp.cat) callNextMethod(jlogger, cat_fun = cat_fun, ...))
+setMethod("jlog.debug", "JPLogger", function(jlogger, ..., cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
 
 #' @export
-setMethod("jlog.info", "JPLogger", function(jlogger, ..., cat_fun = jlp.cat) callNextMethod(jlogger, cat_fun = cat_fun, ...))
+setMethod("jlog.info", "JPLogger", function(jlogger, ..., cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
 
 #' @export
-setMethod("jlog.warn", "JPLogger", function(jlogger, ..., cat_fun = jlp.cat) callNextMethod(jlogger, cat_fun = cat_fun, ...))
+setMethod("jlog.warn", "JPLogger", function(jlogger, ..., cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
 
 #' @export
-setMethod("jlog.error", "JPLogger", function(jlogger, ..., cat_fun = jlp.cat) callNextMethod(jlogger, cat_fun = cat_fun, ...))
+setMethod("jlog.error", "JPLogger", function(jlogger, ..., cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
 
 #' @export
-setMethod("jlog.fatal", "JPLogger", function(jlogger, ..., cat_fun = jlp.cat) callNextMethod(jlogger, cat_fun = cat_fun, ...))
+setMethod("jlog.fatal", "JPLogger", function(jlogger, ..., cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
 
 JPLOGGER.ENV <- new.env()
 #' @name JPLogger
