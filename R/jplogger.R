@@ -1,6 +1,7 @@
-jlp.cat <- function(...)
+jlp.cat <- function(...,
+                    all.rank = TRUE)
 {
-    comm.cat(quiet = TRUE, Sys.info()["nodename"], "PROC:", comm.rank(),  "|", ...)
+    comm.cat(quiet = TRUE, Sys.info()["nodename"], "PROC:", comm.rank(),  "|", ..., all.rank = all.rank)
 }
 
 JPLogger <- setRefClass("JPLogger", contains = "JLogger")

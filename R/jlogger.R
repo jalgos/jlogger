@@ -174,7 +174,8 @@ JLOGGER.jlog <- function(jlfile,
                          prefix,
                          prechar = "",
                          endline = "\n",
-                         cat.fun = cat)
+                         cat.fun = cat,
+                         all.rank) ## Here to be compatible with multiprocess case
 {
     if(prechar != "") cat(prechar, file = jlfile, append = TRUE)
     cat.fun(as.character(Sys.time()), JLOGGER.LEVELS[level], prefix, ":", ..., endline, file = jlfile, append = TRUE)
