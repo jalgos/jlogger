@@ -1,3 +1,10 @@
+
+#' Print In PBDR context
+#'
+#' Wrapper around \code{comm.cat}
+#' @param ... to be forwarded to cat
+#' @param all.rank Should all the rank partake in the printing
+#' @export
 jlp.cat <- function(...,
                     all.rank = TRUE)
 {
