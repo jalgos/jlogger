@@ -1,8 +1,10 @@
 
-#' Print In PBDR context
-#'
-#' Wrapper around \code{comm.cat}
-#' @param ... to be forwarded to cat
+#' @title Print In PBDR context
+#' @name jlp.print
+NULL
+
+#' @describeIn jlp.print Wrapper around \code{comm.cat}
+#' @param ... to be forwarded to \code{comm.cat} or \code{comm.print}
 #' @param all.rank Should all the rank partake in the printing
 #' @export
 jlp.cat <- function(...,
@@ -11,6 +13,16 @@ jlp.cat <- function(...,
 {
     comm.cat(quiet = TRUE, Sys.info()["nodename"], "PROC:", comm.rank(),  "|", ..., all.rank = all.rank, barrier = barrier)
 }
+
+#' @describeIn jlp.print Wrapper around \code{comm.print}
+#' @export
+jlp.print <- function(...,
+                      all.rank = TRUE,
+                      barrier = FALSE)
+{
+    comm.print(..., all.rank = all.rank, barrier = barrier)
+}
+
 
 JPLogger <- setRefClass("JPLogger", contains = "JLogger")
 
@@ -31,6 +43,25 @@ setMethod("jlog.error", "JPLogger", function(jlogger, ..., cat.fun = jlp.cat) ca
 
 #' @export
 setMethod("jlog.fatal", "JPLogger", function(jlogger, ..., cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+
+#' @export
+setMethod("jlprint.trace", "JPLogger", function(jlogger, ..., cat.fun = jlp.print) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+
+#' @export
+setMethod("jlprint.debug", "JPLogger", function(jlogger, ..., cat.fun = jlp.print) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+
+#' @export
+setMethod("jlprint.info", "JPLogger", function(jlogger, ..., cat.fun = jlp.print) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+
+#' @export
+setMethod("jlprint.warn", "JPLogger", function(jlogger, ..., cat.fun = jlp.print) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+
+#' @export
+setMethod("jlprint.error", "JPLogger", function(jlogger, ..., cat.fun = jlp.print) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+
+#' @export
+setMethod("jlprint.fatal", "JPLogger", function(jlogger, ..., cat.fun = jlp.print) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+
 
 JPLOGGER.ENV <- new.env()
 #' @name JPLogger
