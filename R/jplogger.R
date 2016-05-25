@@ -6,9 +6,10 @@
 #' @param all.rank Should all the rank partake in the printing
 #' @export
 jlp.cat <- function(...,
-                    all.rank = TRUE)
+                    all.rank = TRUE,
+                    barrier = FALSE)
 {
-    comm.cat(quiet = TRUE, Sys.info()["nodename"], "PROC:", comm.rank(),  "|", ..., all.rank = all.rank)
+    comm.cat(quiet = TRUE, Sys.info()["nodename"], "PROC:", comm.rank(),  "|", ..., all.rank = all.rank, barrier = barrier)
 }
 
 JPLogger <- setRefClass("JPLogger", contains = "JLogger")
