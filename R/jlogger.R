@@ -159,12 +159,19 @@ JLOGGER.jlwrite <- function(jlfile, level, prefix, data, ..., endline = "\n")
 }
 
 #To print complicated objects not handle by cat to the console
-JLOGGER.jlprint <- function(jlfile, level, prefix, data,..., endline = "\n")
+JLOGGER.jlprint <- function(jlfile,
+                            level,
+                            prefix,
+                            data,
+                            ...,
+                            cat.fun = cat,
+                            print.fun = print,
+                            endline = "\n")
 {
     #This prints to the console so only id jlfile == ""
     if(jlfile != "") return()
-    cat(as.character(Sys.time()), JLOGGER.LEVELS[level], prefix, ":", endline, file = jlfile, append = TRUE)
-    print(data)
+    cat.fun(as.character(Sys.time()), JLOGGER.LEVELS[level], prefix, ":", endline, file = jlfile, append = TRUE)
+    print.fun(data)
     cat(endline, file = jlfile, append = TRUE)
 }
 
