@@ -47,22 +47,22 @@ setMethod("jlog.error", "JPLogger", function(jlogger, ..., cat.fun = jlp.cat) ca
 setMethod("jlog.fatal", "JPLogger", function(jlogger, ..., cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
 
 #' @export
-setMethod("jlprint.trace", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+setMethod("jlprint.trace", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, print.fun = jlp.print, ...))
 
 #' @export
-setMethod("jlprint.debug", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+setMethod("jlprint.debug", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, print.fun = jlp.print, ...))
 
 #' @export
-setMethod("jlprint.info", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+setMethod("jlprint.info", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, print.fun = jlp.print, ...))
 
 #' @export
-setMethod("jlprint.warn", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+setMethod("jlprint.warn", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, print.fun = jlp.print, ...))
 
 #' @export
-setMethod("jlprint.error", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+setMethod("jlprint.error", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, print.fun = jlp.print, ...))
 
 #' @export
-setMethod("jlprint.fatal", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
+setMethod("jlprint.fatal", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, print.fun = jlp.print, ...))
 
 
 JPLOGGER.ENV <- new.env()
