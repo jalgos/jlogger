@@ -170,9 +170,9 @@ JLOGGER.jlprint <- function(jlfile,
 {
     #This prints to the console so only id jlfile == ""
     if(jlfile != "") return()
-    cat.fun(as.character(Sys.time()), JLOGGER.LEVELS[level], prefix, ":", endline, file = jlfile, append = TRUE)
-    print.fun(data)
-    cat(endline, file = jlfile, append = TRUE)
+    cat.fun(as.character(Sys.time()), JLOGGER.LEVELS[level], prefix, ":", endline, file = jlfile, append = TRUE, ...)
+    print.fun(data, ...)
+    cat.fun(endline, file = jlfile, append = TRUE, ...)
 }
 
 JLOGGER.jlog <- function(jlfile,
