@@ -22,7 +22,7 @@ jlp.print <- function(...,
                       all.rank = length(rank.print) == 0L,
                       barrier = FALSE)
 {
-    comm.print(..., all.rank = all.rank, barrier = barrier)
+    comm.print(..., all.rank = all.rank, barrier = barrier, rank.print = rank.print)
 }
 
 
