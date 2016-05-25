@@ -8,16 +8,18 @@ NULL
 #' @param all.rank Should all the rank partake in the printing
 #' @export
 jlp.cat <- function(...,
-                    all.rank = TRUE,
+                    rank.print = integer(),
+                    all.rank = length(rank.print) == 0L,
                     barrier = FALSE)
 {
-    comm.cat(quiet = TRUE, Sys.info()["nodename"], "PROC:", comm.rank(),  "|", ..., all.rank = all.rank, barrier = barrier)
+    comm.cat(quiet = TRUE, Sys.info()["nodename"], "PROC:", comm.rank(),  "|", ..., all.rank = all.rank, barrier = barrier, rank.print = rank.print)
 }
 
 #' @describeIn jlp.print Wrapper around \code{comm.print}
 #' @export
 jlp.print <- function(...,
-                      all.rank = TRUE,
+                      rank.print = integer(),
+                      all.rank = length(rank.print) == 0L,
                       barrier = FALSE)
 {
     comm.print(..., all.rank = all.rank, barrier = barrier)
