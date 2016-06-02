@@ -65,7 +65,6 @@ setMethod("jlprint.error", "JPLogger", function(jlogger, ..., print.fun = jlp.pr
 setMethod("jlprint.fatal", "JPLogger", function(jlogger, ..., print.fun = jlp.print, cat.fun = jlp.cat) callNextMethod(jlogger, cat.fun = cat.fun, ...))
 
 
-JPLOGGER.ENV <- new.env()
 #' @name JPLogger
 #' @title Parallel JLoggers
 #' @details
@@ -74,6 +73,8 @@ JPLOGGER.ENV <- new.env()
 #' @export
 JPLoggerFactory <- function(name, ..., reset = FALSE)
 {
-    if(!name %in% ls(JPLOGGER.ENV) || reset) assign(name, JPLogger(name, ...), JPLOGGER.ENV)
-    get(name, JPLOGGER.ENV)
+    if(!name %in% ls(JLOGGER.ENV) || reset) assign(name, JPLogger(name, ...), JLOGGER.ENV)
+    jlog <- get(name, JLOGGER.ENV)
+    if(!is(jlog, "JPLogger")) assign(name, JPLogger(name, ...), JLOGGER.ENV)
+    else jlog
 }
