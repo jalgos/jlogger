@@ -41,7 +41,7 @@ JLOGGER.DEFAULT.LEVEL <- JLOGGER.DEBUG
 JLOGGER.ENV <- new.env()
 
 #' JLogger Factory
-#' 
+#'
 #' Get a logger for the given handle. Creates it if it's missing.
 #' @param name Handle for the JLogger
 #' @param ... Parameters to be passes to the constructor of JLogger. The parameters are files, prefix, level, config, logconfig
@@ -54,7 +54,7 @@ JLoggerFactory <- function(name, ..., reset = FALSE)
 }
 
 #' JLoggerReset
-#' 
+#'
 #' Resets all the JLoggers
 #' @export
 JLoggerReset <- function()
@@ -63,7 +63,7 @@ JLoggerReset <- function()
 }
 
 #' Set an indivual JLogger
-#' 
+#'
 #' Manually maps a logger to a handle
 #' @param name handle to be used
 #' @param jlogger logger to be mapped
@@ -129,11 +129,11 @@ JLOGGER.getlevel <- function(name, logconfig)
     for(lv in JLOGGER.LEVELS)
     {
         level <- level + 1L
-        lvnode <- logconfig[lv]
+        lvnode <- logconfig[[lv]]
         if(is.null(lvnode)) next
-        if(mgrep(lvnode, grep.fun = grepl, name)) return(level)        
+        if(mgrep(lvnode, grep.fun = grepl, name)) return(level)
     }
-    return(level + 1)#won't log anything
+    return(level + 1L)#won't log anything
 }
 
 #Not a true set will return a copy. Can override a few value but not the name and file
@@ -329,7 +329,7 @@ jl.flush <- function(jlogger)
     invisible()
 }
 #' Flushing buffers
-#' 
+#'
 #' Flushes the current buffers.
 #' @param jlogger JLogger object
 #' @export
@@ -414,7 +414,7 @@ setMethod("jlflush", "NULL", function(jlogger){})
 
 
 #' Getting buffers
-#' 
+#'
 #' Get the buffers a JLogger writes to
 #' @param logger JLogger object
 #' @return Vector of file paths. Empty character is the console
@@ -465,7 +465,7 @@ set.logging.level <- function(logger,
                               level)
 {
     if(is.character(logger)) logger <- JLoggerFactory(logger)
-    logger$m.level <- level 
+    logger$m.level <- level
 }
 
 
@@ -479,7 +479,7 @@ set.logger.prefix <- function(logger,
                               prefix)
 {
     if(is.character(logger)) logger <- JLoggerFactory(logger)
-    logger$m.prefix <- prefix    
+    logger$m.prefix <- prefix
 }
 
 ###### utility function for logging more information ####
@@ -487,7 +487,7 @@ set.logger.prefix <- function(logger,
 ## Returns the name of the function it was called from
 fname <- function(offset = 1)
 {
-    as.character(sys.calls()[[sys.nframe() - offset]])[1]    
+    as.character(sys.calls()[[sys.nframe() - offset]])[1]
 }
 
 jlfname <- function() fname(8)
