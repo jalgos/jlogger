@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>JLOGGER</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>JLOGGER</h1>
+
+<p>Gracefully handling logging is key when developing big projects
+Logging has several purposes:</p>
+
+<ul>
+<li>outputing the result of a computation</li>
+<li>printing warning when the program does something the user does not necessarily expect</li>
+<li>printing detailed explanations of a program&#39;s error/ crash</li>
+<li>Providing the user with the current state of computation (e.g. &ldquo;step i over n in function f&rdquo;</li>
+<li>Helping debugging by tracing the successive calls and variable values to identify a bug</li>
+</ul>
+
+<p>Furthermore we may want to output the logs either directly to the console or write them in files to be stored.</p>
+
+<p>R has a few functions to handle printing objects, namely <em>print</em>, <em>message</em> and <em>cat</em>. However they have limited functionality.
+That is why we built the <em>JLogger</em> class.
+JLogger is built on top of cat and allows one to output to several files or to the console easily. JLogger statements can be turn on and off as it implements the well known concept of logging level (TRACE, DEBUG, INFO, WARNING, ERROR, FATAL)</p>
+
+<p>JLogger are R5 objects. This is one of the few occurrences of R5 objects as their use is strongly discouraged.
+Mutable objects where chosen here to persist changes made locally to a logger. For example if a condition is met in a function the logging level or logging file of a logger can be changed affecting the rest of the program.</p>
+
+<h2>I) Use of logging</h2>
+
+<p>Logging should be used to give the user key information about the current of state of computation.
+It is really important to print information about the size of the inputs, the current step in a recursive algorithm, measures about the outputs, edge cases for example.</p>
+
+<p>Logging should be implemented from the start of the project.</p>
+
+<p>It is very common, especially early in the development of a project, that we need to trace a computation in its tiniest details. This situation arises for debugging purposes mostly.</p>
+
+<p>The way one will go about it would be to put <em>print</em> / <em>cat</em> statements in points of interest.</p>
+
+<p>Let say we want to debug the following function we can insert a few cat statements</p>
+
+<pre><code class="r">f &lt;- function()
+{
+    X = rnorm(1000)
+    cat(&quot;Maximum value of X is:&quot;, max(X), &quot;\n&quot;)
+    D = rep(0, length(X) + 1)
+    for(i in 1:length(X))
+    {
+        cat(&quot;Value of X at step i:&quot;, X[i], &quot;\n&quot;)
+        D[i + 1] = cos(D[i] + X[i])
+    }
+    cat(&quot;Median of D is:&quot;, median(D), &quot;\n&quot;)
+    sum(D)
+}
+f()
+</code></pre>
+
+<p>We will obtain a lot of information (we did not display it here) about the computation and monitor it easily now.
+The problem is when we fixed the function the call in the for loop is of no interest but yet will take most of the logging space, making it hard to find relevant information for further debugging.</p>
+
+<p>A solution would be to remove or comment the call to <em>cat</em> in the loop and proceed with the new version.
+However if in the future our function gives us an unexpected output that requires an in-depth look at the function&#39;s computation we would have to put the statement back.
+It can be easy to handle for a small number of functions but becomes a nightmare as the project gets bigger.</p>
+
+<p>JLogger is a perfect fit here. Call to the logger can be turned on and off according to the logging level of the logger</p>
+
+<h2>II) Using JLogger</h2>
+
+<p>First you need to source the file &ldquo;jlogger.R&rdquo;
+The file can be found in the git project &#39;utils&#39; along with other utility R functions.</p>
+
+<p><code>install.git(&#39;git@datasaiyan.com:/home/git/repos/utils/util.R.git&#39;)</code></p>
+
+<p>Jlogger requires the file &ldquo;util.R&rdquo; as well (it uses function &#39;mgrep&#39;) :</p>
+
+<pre><code class="r">install.git(&#39;git@www.datasaiyan.com:utils/jsutils.git&#39;)
+</code></pre>
+
+<p>JLogger objects are created/ retrieved through the JLoggerFactory
+Each logger is identified by a string id:</p>
+
+<pre><code class="r">logger = JLoggerFactory(&quot;jalgos&quot;)
+</code></pre>
+
+<p>If the logger named <code>jalgos</code> was not created before the above call will create a new instance. Otherwise it will return the object previously created
+This makes it easy to use the logger from within any function without having to pass it around.</p>
+
+<p>JLoggers can filter which statements they output to the log file (or console). It is achieved through the logging level
+6 levels are implemented</p>
+
+<pre><code class="r">JLOGGER.LEVELS
+</code></pre>
+
+<pre><code>## [1] &quot;TRACE&quot;   &quot;DEBUG&quot;   &quot;INFO&quot;    &quot;WARNING&quot; &quot;ERROR&quot;   &quot;FATAL&quot;
+</code></pre>
+
+<p>The above vectors defines the logging priority. For example if a logger level is set to &#39;JLOGGER.TRACE&#39; any message will be output to the log file.
+Conversely if it is set to &#39;JLOGGER.FATAL&#39; only &ldquo;fatal&rdquo; messages will be print out.
+Let&#39;s illustrate this behavior:</p>
+
+<pre><code class="r">logger$m.level = JLOGGER.INFO
+</code></pre>
+
+<p>The syntax for logging a message is:
+<code>jlog.$priority($logger, $object1, $object2, ...., $objectn)</code>
+The logger will check if the call has a priority greater than its priority and output a message that looks like
+<code>date time loglevel prefix: $object1, $object2, ...., $objectn&quot;</code>
+No need to give the eol character or separate objects with spaces</p>
+
+<pre><code class="r">jlog.info(logger, &quot;This is a test&quot;)
+</code></pre>
+
+<pre><code>## 2016-06-16 16:34:37 INFO jalgos : This is a test
+</code></pre>
+
+<p>The logger gives a bit more context that can be useful in debugging or monitoring execution.</p>
+
+<p>Since the logging level is set to info the following message won&#39;t be logged</p>
+
+<pre><code class="r">jlog.trace(logger, &quot;Tracing&quot;)
+</code></pre>
+
+<pre><code>## NULL
+</code></pre>
+
+<pre><code class="r">my_heavy_comp &lt;- function()
+{
+    logger = JLoggerFactory(&quot;jalgos&quot;)
+    jlog.info(logger, &quot;This computation is gonna take a long time&quot;)
+    X = rnorm(1000)
+    jlog.debug(logger, &quot;Max of X:&quot;, max(X))
+    D = 0
+    for(x in X)
+    {
+        jlog.trace(logger, &quot;I want to know exactly what is going on at each step of the loop:&quot;, &quot;x:&quot;, x, &quot;D:&quot;, D)
+        D = sin(x + D)
+        if(abs(D) &lt; .01) jlog.warn(logger, &quot;D is small:&quot;, D, &quot;, you should know&quot;)
+    }
+    jlog.info(logger, &quot;Computation is over. Return value:&quot;, D)
+    D
+}
+</code></pre>
+
+<p>Given this heavy function, setting logger level to info</p>
+
+<pre><code class="r">logger = JLoggerFactory(&quot;jalgos&quot;)
+logger$m.level = JLOGGER.INFO
+my_heavy_comp()
+</code></pre>
+
+<pre><code>## 2016-06-16 16:34:37 INFO jalgos : This computation is gonna take a long time 
+## 2016-06-16 16:34:37 WARNING jalgos : D is small: -0.009695392 , you should know 
+## 2016-06-16 16:34:37 WARNING jalgos : D is small: 0.009678441 , you should know 
+## 2016-06-16 16:34:37 WARNING jalgos : D is small: -0.005143874 , you should know 
+## 2016-06-16 16:34:37 WARNING jalgos : D is small: 0.001947735 , you should know 
+## 2016-06-16 16:34:37 WARNING jalgos : D is small: -0.005187589 , you should know 
+## 2016-06-16 16:34:37 WARNING jalgos : D is small: -0.003408209 , you should know 
+## 2016-06-16 16:34:38 WARNING jalgos : D is small: -0.006916986 , you should know 
+## 2016-06-16 16:34:38 INFO jalgos : Computation is over. Return value: 0.239519
+</code></pre>
+
+<pre><code>## [1] 0.239519
+</code></pre>
+
+<p>Now to warning:</p>
+
+<pre><code class="r">logger$m.level = JLOGGER.WARN
+my_heavy_comp()
+</code></pre>
+
+<pre><code>## 2016-06-16 16:34:38 WARNING jalgos : D is small: -0.001887302 , you should know 
+## 2016-06-16 16:34:38 WARNING jalgos : D is small: 0.006683671 , you should know 
+## 2016-06-16 16:34:38 WARNING jalgos : D is small: 0.0005033445 , you should know 
+## 2016-06-16 16:34:38 WARNING jalgos : D is small: 0.008412488 , you should know 
+## 2016-06-16 16:34:38 WARNING jalgos : D is small: -0.008596674 , you should know 
+## 2016-06-16 16:34:38 WARNING jalgos : D is small: -0.006301923 , you should know 
+## 2016-06-16 16:34:38 WARNING jalgos : D is small: -0.007640209 , you should know 
+## 2016-06-16 16:34:38 WARNING jalgos : D is small: -0.004352238 , you should know 
+## 2016-06-16 16:34:38 WARNING jalgos : D is small: -0.001684934 , you should know
+</code></pre>
+
+<pre><code>## [1] 0.9821325
+</code></pre>
+
+<p>And now to trace:</p>
+
+<pre><code class="r">logger$m.level = JLOGGER.TRACE
+my_heavy_comp()
+</code></pre>
+
+<p>In this last case, we will get an awful lot of content we did not display.
+This example illustrates how messaging can be turned on and off easily
+One should not refrain from using the logger. Appropriately logging relevant information really improves post-mortem debugging and greatly speeds up development</p>
+
+<p>We provide two other ways of logging objects: <code>jlprint.*</code> and <code>jlwrite.*</code>.</p>
+
+<p><code>jlprint</code> is a wrapper around <code>print</code> and <code>jlwrite</code> is a wrapper around <code>write.table</code>. This allows you to log more complex objects that are not handled by cat.</p>
+
+<pre><code class="r">m = matrix(rnorm(100), 10, 10)
+jlog.info(logger, m) ## Looks disastrous
+</code></pre>
+
+<pre><code>## 2016-06-16 16:34:38 INFO jalgos : 0.6018115 -0.8695245 0.8760098 0.9234286 -0.3904474 -0.1624867 0.01771718 -0.389735 0.5755072 0.5867506 1.731458 -0.5268292 -0.7821828 -0.5755612 -0.4201484 0.2672047 -0.7302498 2.699499 0.9471331 0.1083734 -2.665278 -1.74357 -0.6895787 -0.2500003 0.721606 -1.7938 0.3548181 -1.154617 0.1133798 -0.02067213 1.372074 -0.316874 1.259541 -0.2099376 0.4379518 -1.288953 -0.559455 1.220172 0.9075606 0.1796256 -0.2259545 0.7637832 1.498003 -1.724214 -0.4744248 -0.5790666 1.391533 0.8452129 0.4888359 2.057598 0.9083759 0.2336213 1.44219 -2.010289 -0.3528223 -1.192101 -0.4859984 1.529827 0.5599454 -0.5855541 -0.6015762 0.9479154 -1.5338 -0.9292362 -0.4557787 -1.421487 -0.7084473 -0.624489 0.1828879 -0.7901241 2.964639 0.2778364 -0.1151965 -1.709949 -0.1322515 -1.021101 -0.8442775 -1.984643 0.9971386 1.458086 0.2818974 0.5778441 -1.927722 0.2349527 -1.530362 0.4280039 1.158254 -0.3236403 0.8761156 -0.5445655 1.13177 -1.182487 1.460312 0.02912489 -1.642304 -0.2487976 -1.320875 1.171583 0.4741245 -0.2494998
+</code></pre>
+
+<pre><code class="r">jlprint.info(logger, m) ## Looks good
+</code></pre>
+
+<pre><code>## 2016-06-16 16:34:38 INFO jalgos : 
+##              [,1]       [,2]        [,3]       [,4]       [,5]       [,6]
+##  [1,]  0.60181154  1.7314584 -2.66527751  1.3720738 -0.2259545  0.9083759
+##  [2,] -0.86952446 -0.5268292 -1.74357044 -0.3168740  0.7637832  0.2336213
+##  [3,]  0.87600976 -0.7821828 -0.68957870  1.2595414  1.4980026  1.4421897
+##  [4,]  0.92342861 -0.5755612 -0.25000032 -0.2099376 -1.7242145 -2.0102894
+##  [5,] -0.39044740 -0.4201484  0.72160602  0.4379518 -0.4744248 -0.3528223
+##  [6,] -0.16248669  0.2672047 -1.79379957 -1.2889532 -0.5790666 -1.1921008
+##  [7,]  0.01771718 -0.7302498  0.35481811 -0.5594550  1.3915326 -0.4859984
+##  [8,] -0.38973497  2.6994991 -1.15461666  1.2201715  0.8452129  1.5298274
+##  [9,]  0.57550715  0.9471331  0.11337985  0.9075606  0.4888359  0.5599454
+## [10,]  0.58675062  0.1083734 -0.02067213  0.1796256  2.0575981 -0.5855541
+##             [,7]       [,8]       [,9]       [,10]
+##  [1,] -0.6015762  2.9646388  0.2818974  1.13177030
+##  [2,]  0.9479154  0.2778364  0.5778441 -1.18248731
+##  [3,] -1.5337997 -0.1151965 -1.9277218  1.46031247
+##  [4,] -0.9292362 -1.7099492  0.2349527  0.02912489
+##  [5,] -0.4557787 -0.1322515 -1.5303618 -1.64230370
+##  [6,] -1.4214874 -1.0211012  0.4280039 -0.24879764
+##  [7,] -0.7084473 -0.8442775  1.1582544 -1.32087524
+##  [8,] -0.6244890 -1.9846429 -0.3236403  1.17158260
+##  [9,]  0.1828879  0.9971386  0.8761156  0.47412452
+## [10,] -0.7901241  1.4580858 -0.5445655 -0.24949975
+</code></pre>
+
+<pre><code class="r">d = data.frame(i = 1:10, x = rnorm(10))
+jlwrite.info(logger, d) ## Looks good too
+</code></pre>
+
+<pre><code>## 2016-06-16 16:34:38 INFO jalgos : 
+## &quot;i&quot; &quot;x&quot;
+## &quot;1&quot; 1 0.273013907082653
+## &quot;2&quot; 2 -2.31410763364822
+## &quot;3&quot; 3 0.0486807150724941
+## &quot;4&quot; 4 -0.0458313850877191
+## &quot;5&quot; 5 -0.340298072676317
+## &quot;6&quot; 6 1.04791815672035
+## &quot;7&quot; 7 -0.692824618856236
+## &quot;8&quot; 8 1.54332670925805
+## &quot;9&quot; 9 -1.29182678052621
+## &quot;10&quot; 10 -0.108131343447086
+</code></pre>
+
+<h2>III) Configuring JLogger</h2>
+
+<h3>Logging levels</h3>
+
+<p>Logging levels can be set directly:</p>
+
+<pre><code class="r">logger = JLoggerFactory(&quot;jalgos&quot;)
+logger$m.level = JLOGGER.INFO
+</code></pre>
+
+<p>It can also be set through the function <code>set.logging.level</code>. <code>set.logging.level</code> handles logger objects and logger names :</p>
+
+<pre><code class="r">set.logging.level(logger, JLOGGER.INFO)
+set.logging.level(&quot;jalgos&quot;, JLOGGER.INFO)
+</code></pre>
+
+<h3>Output files</h3>
+
+<p>The logger can output its messages to one or several files</p>
+
+<p>The logging files can be access and overriden through the member <code>m.files</code> :</p>
+
+<pre><code class="r">logger$m.files
+</code></pre>
+
+<pre><code>## [1] &quot;&quot;
+</code></pre>
+
+<p>This field is a character vector of the log file names.
+The only exception is that the filename &ldquo;&rdquo; will log to the console. Log files can be set with <code>set.logfiles</code> and <code>add.logfiles</code>.</p>
+
+<pre><code class="r">set.logfiles(logger, #logger can be an object or a character string
+             c(&quot;test.log&quot;))
+logger$m.files
+</code></pre>
+
+<pre><code>## [1] &quot;test.log&quot;
+</code></pre>
+
+<pre><code class="r">jlog.info(logger, &quot;Test&quot;) ## Output to &quot;test.log&quot;
+add.logfiles(logger, #DITTO
+             &quot;&quot;)
+logger$m.files
+</code></pre>
+
+<pre><code>## [1] &quot;test.log&quot; &quot;&quot;
+</code></pre>
+
+<pre><code class="r">jlog.info(logger, &quot;Test 2&quot;) ## Output to both &quot;test.log&quot; and the console
+</code></pre>
+
+<pre><code>## 2016-06-16 16:34:38 INFO jalgos : Test 2
+</code></pre>
+
+<p>The logger will automatically append the new messages to the files.</p>
+
+<p>logfiles can be flushed with <code>jlflush</code> function :</p>
+
+<pre><code class="r">jlflush(logger) #Flushing console isn&#39;t relevant, &#39;test.log&#39; will however be flushed
+</code></pre>
+
+<h3>Prefix</h3>
+
+<p>The prefix is the string printed right after the date. It can be set directly through the member <code>logger$m.prefix</code> :</p>
+
+<pre><code class="r">logger$m.prefix = &quot;Michael Jackson&quot;
+jlog.info(logger, &quot;is bad&quot;)
+</code></pre>
+
+<pre><code>## 2016-06-16 16:34:38 INFO Michael Jackson : is bad
+</code></pre>
+
+<p>Logger can be fully configured at inception. <code>JLoggerFactory</code> accepts additional arguments.
+Namely <code>files</code>, <code>prefix</code> defaulting to the logger&#39;s name, <code>level</code>, etc.</p>
+
+<pre><code class="r">my_logger &lt;- JLoggerFactory(name = &quot;my logger&quot;,
+                            files = c(&quot;&quot;, &quot;file1.log&quot;, &quot;file2.log&quot;),
+                            prefix = &quot;make it funky&quot;,
+                            level = JLOGGER.TRACE)
+my_logger
+</code></pre>
+
+<pre><code>## JLogger name: my logger prefix: make it funky level: TRACE files: *console* file1.log file2.log
+</code></pre>
+
+<pre><code class="r">jlog.trace(my_logger, &quot;yaay!&quot;)
+</code></pre>
+
+<pre><code>## 2016-06-16 16:34:38 TRACE make it funky : yaay!
+</code></pre>
+
+<p>The default level is <code>JLOGGER.DEFAULT.LEVEL</code></p>
+
+<pre><code class="r">JLOGGER.DEFAULT.LEVEL
+</code></pre>
+
+<pre><code>## [1] 2
+</code></pre>
+
+<p>If changed the next jlogger instantiated without a specified level will be set to this level</p>
+
+<pre><code class="r">JLOGGER.DEFAULT.LEVEL = JLOGGER.ERROR
+errlog = JLoggerFactory(name = &quot;err logger&quot;)
+errlog$m.level
+</code></pre>
+
+<pre><code>## [1] 5
+</code></pre>
+
+<h3>Turning off logging completely</h3>
+
+<p>Logging can be turned off by setting a logging level higher than the highest logging level available. The highest level for now is JLOGGER.FATAL</p>
+
+<pre><code class="r">logger$m.level = JLOGGER.FATAL + 1L
+jlog.fatal(logger, &quot;1 = 2&quot;) # won&#39;t print
+</code></pre>
+
+<pre><code>## NULL
+</code></pre>
+
+<p>The <code>jlog</code> functions accept <code>NULL</code> as input. In this case no message is printed.</p>
+
+<pre><code class="r">jlog.info(NULL, &quot;1 != 1&quot;) ## Nothing
+</code></pre>
+
+<pre><code>## NULL
+</code></pre>
+
+<p>It makes it easy to turn off all messaging without having to handle logging levels.</p>
+
+<h3>Clearing registered loggers.</h3>
+
+<p>You can clear all created logger with <code>JLoggerReset</code></p>
+
+<pre><code class="r">JLoggerReset() ## subsequent calls to JLoggerFactory will create a new instance
+</code></pre>
+
+<h3>Jlogger configuration</h3>
+
+<p>JLoggers can be configured through a config list. Logger configs are used to automatically configure the logging level.</p>
+
+<p>You need to specify one entry by logging level. You don&#39;t need to specify all the levels. Each entry refers to a set of regular expressions.</p>
+
+<p>Example:</p>
+
+<pre><code class="r">lconf &lt;- list(ERROR = &quot;err.*&quot;,
+              INFO = c(&quot;jalgos&quot;, &quot;inf.*&quot;),
+              TRACE = c(&quot;tracer&quot;, &quot;overlogger&quot;))
+</code></pre>
+
+<p>Now by setting the <code>logconfig</code> argument in <code>JLoggerFactory</code> to <code>lconf</code>, the name will be matched against the different regular expression and in case there is a match the logging level will be set to the corresponding level.</p>
+
+<p>If a name doesn&#39;t match any regex in the config, the logger will be quiet for all levels.</p>
+
+<pre><code class="r">err_log &lt;- JLoggerFactory(name = &quot;err logger&quot;,
+                          logconfig = lconf)
+
+err_log ## &quot;err logger&quot;  matches &quot;err.*&quot; hence err_log&#39;s level is set to ERROR
+</code></pre>
+
+<pre><code>## JLogger name: err logger prefix: err logger level: ERROR files: *console*
+</code></pre>
+
+<pre><code class="r">jalgos_logger &lt;- JLoggerFactory(name = &quot;jalgos&quot;,
+                          logconfig = lconf)
+jalgos_logger ## &quot;jalgos&quot; matches an entry for INFO
+</code></pre>
+
+<pre><code>## JLogger name: jalgos prefix: jalgos level: INFO files: *console*
+</code></pre>
+
+</body>
+
+</html>
