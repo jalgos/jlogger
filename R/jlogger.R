@@ -34,6 +34,30 @@ JLOGGER.FATAL <- 6L
 #' @export
 JLOGGER.LEVELS <- c("TRACE", "DEBUG", "INFO", "WARNING", "ERROR", "FATAL")
 
+## Thanks to: http://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+
+#' @rdname logging.levels
+#' @export
+JLOGGER.COLORS <- c(TRACE = '\33[0;35m',
+                    DEBUG = '\33[0;34m',
+                    INFO = '\33[1;32m',
+                    WARNING = '\33[0;33m',
+                    ERROR = '\33[1;31m',
+                    FATAL =  '\33[1;31m')
+
+#' @rdname logging.levels
+#' @export
+JLOGGER.STYLE <- c(TRACE = '',
+                   DEBUG = '',
+                   INFO = '',
+                   WARNING = '\33[1m',
+                   ERROR = '\33[1m',
+                   FATAL =  '\33[1m\33[7m')
+
+#' @rdname logging.levels
+#' @export
+JLOGGER.STYLE.COLORS.RESET <- '\033[0m'
+
 #' @rdname logging.levels
 #' @export
 JLOGGER.DEFAULT.LEVEL <- JLOGGER.DEBUG
@@ -106,11 +130,28 @@ JLOGGER.init <- function(name = "",
     m.prefix <<- prefix
 }
 
+string.level <- function(color,
+                         style,
+                         level)
+{
+    paste(c(color, style, level, JLOGGER.STYLE.COLORS.RESET), collapse = "")
+}
+
 JLOGGER.show <- function()
 {
     files <- m.files
     files[files == ""] <- "*console*"
-    cat(class(.self), "name:", m.name, "prefix:", m.prefix, "level:", JLOGGER.LEVELS[m.level], "files:", paste(files, sep = "/ "), "\n")
+    cat(class(.self), "name:",
+        m.name,
+        "prefix:",
+        m.prefix,
+        "level:",
+        string.level(JLOGGER.COLORS[m.level],
+                     JLOGGER.STYLE[m.level],
+                     JLOGGER.LEVELS[m.level]),
+        "files:",
+        paste(files, sep = "/ "),
+        "\n")
 }
 
 JLogger$methods(initialize = JLOGGER.init,
@@ -153,12 +194,19 @@ JLOGGER.jlquiet <- function(jlogger, level, ...)
 #To use for object that can't be printed with cat. Uses write.table internally
 JLOGGER.jlwrite <- function(jlfile, level, prefix, data, ..., endline = "\n")
 {
-    cat(as.character(Sys.time()), JLOGGER.LEVELS[level], prefix, ":", endline, file = jlfile, append = TRUE)
+    cat(as.character(Sys.time()),
+        string.level(JLOGGER.COLORS[level],
+                     JLOGGER.STYLE[level],
+                     JLOGGER.LEVELS[level]),
+        prefix, ":",
+        endline,
+        file = jlfile,
+        append = TRUE)
     suppressWarnings(write.table(data, ..., file = jlfile, append = TRUE))#Warns about appending column names to a file
     cat(endline, file = jlfile, append = TRUE)
 }
 
-#To print complicated objects not handle by cat to the console
+#To print complex objects not handle by cat to the console
 JLOGGER.jlprint <- function(jlfile,
                             level,
                             prefix,
@@ -170,7 +218,15 @@ JLOGGER.jlprint <- function(jlfile,
 {
     #This prints to the console so only id jlfile == ""
     if(jlfile != "") return()
-    cat.fun(as.character(Sys.time()), JLOGGER.LEVELS[level], prefix, ":", endline, file = jlfile, append = TRUE, ...)
+    cat.fun(as.character(Sys.time()),
+            string.level(JLOGGER.COLORS[level],
+                         JLOGGER.STYLE[level],
+                         JLOGGER.LEVELS[level]),
+            prefix, ":",
+            endline,
+            file = jlfile,
+            append = TRUE,
+            ...)
     print.fun(data, ...)
     cat.fun(endline, file = jlfile, append = TRUE, ...)
 }
@@ -185,7 +241,15 @@ JLOGGER.jlog <- function(jlfile,
                          all.rank) ## Here to be compatible with multiprocess case
 {
     if(prechar != "") cat(prechar, file = jlfile, append = TRUE)
-    cat.fun(as.character(Sys.time()), JLOGGER.LEVELS[level], prefix, ":", ..., endline, file = jlfile, append = TRUE)
+    cat.fun(as.character(Sys.time()),
+            string.level(JLOGGER.COLORS[level],
+                         JLOGGER.STYLE[level],
+                         JLOGGER.LEVELS[level]),
+            prefix, ":",
+            ...,
+            endline,
+            file = jlfile,
+            append = TRUE)
 }
 
 JLOGGER.do <- function(jlogger, level, log.fun, ..., prefix = jlogger$m.prefix )
