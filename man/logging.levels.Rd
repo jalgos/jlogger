@@ -2,12 +2,15 @@
 % Please edit documentation in R/jlogger.R
 \docType{data}
 \name{logging.levels}
+\alias{JLOGGER.COLORS}
 \alias{JLOGGER.DEBUG}
 \alias{JLOGGER.DEFAULT.LEVEL}
 \alias{JLOGGER.ERROR}
 \alias{JLOGGER.FATAL}
 \alias{JLOGGER.INFO}
 \alias{JLOGGER.LEVELS}
+\alias{JLOGGER.STYLE}
+\alias{JLOGGER.STYLE.COLORS.RESET}
 \alias{JLOGGER.TRACE}
 \alias{JLOGGER.WARN}
 \alias{logging.levels}
@@ -27,6 +30,12 @@ JLOGGER.ERROR
 JLOGGER.FATAL
 
 JLOGGER.LEVELS
+
+JLOGGER.COLORS
+
+JLOGGER.STYLE
+
+JLOGGER.STYLE.COLORS.RESET
 
 JLOGGER.DEFAULT.LEVEL
 }
