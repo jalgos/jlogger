@@ -225,6 +225,9 @@ jl.print.fatal <- function(jlogger, ...) JLOGGER.do(jlogger, JLOGGER.FATAL, JLOG
 #' @template package.description
 #' @param jlogger The JLogger object. It's level combined with the functions level will decide whether the message is logged.
 #' @param ... Objects to be printed. They will be handled by the lower level functions
+#' @param prechar A character that can be printed before the message. Useful if you want to have a statement that erases itself.
+#' @param endline What should be used as an endline delimiter. Defaults to newline.
+                         
 NULL
 
 #' @rdname logging.funs
