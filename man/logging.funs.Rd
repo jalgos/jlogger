@@ -62,6 +62,10 @@ jlprint.fatal(jlogger, ...)
 \item{jlogger}{The JLogger object. It's level combined with the functions level will decide whether the message is logged.}
 
 \item{...}{Objects to be printed. They will be handled by the lower level functions}
+
+\item{prechar}{A character that can be printed before the message. Useful if you want to have a statement that erases itself.}
+
+\item{endline}{What should be used as an endline delimiter. Defaults to newline.}
 }
 \description{
 Utility function to log messages. Several kind of logging functions are provided for handling different use cases. Each type of function handles 6 levels of logging ranging from TRACE to FATAL.
