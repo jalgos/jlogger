@@ -12,7 +12,7 @@ jlp.cat <- function(...,
                     all.rank = length(rank.print) == 0L,
                     barrier = FALSE)
 {
-    comm.cat(quiet = TRUE, Sys.info()["nodename"], "PROC:", comm.rank(),  "|", ..., all.rank = all.rank, barrier = barrier, rank.print = rank.print)
+    pbdMPI::comm.cat(quiet = TRUE, Sys.info()["nodename"], "PROC:", pbdMPI::comm.rank(),  "|", ..., all.rank = all.rank, barrier = barrier, rank.print = rank.print)
 }
 
 #' @describeIn jlp.print Wrapper around \code{comm.print}
@@ -22,7 +22,7 @@ jlp.print <- function(...,
                       all.rank = length(rank.print) == 0L,
                       barrier = FALSE)
 {
-    comm.print(..., all.rank = all.rank, barrier = barrier, rank.print = rank.print)
+    pbdMPI::comm.print(..., all.rank = all.rank, barrier = barrier, rank.print = rank.print)
 }
 
 
