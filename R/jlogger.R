@@ -34,6 +34,15 @@ JLOGGER.FATAL <- 6L
 #' @export
 JLOGGER.LEVELS <- c("TRACE", "DEBUG", "INFO", "WARNING", "ERROR", "FATAL")
 
+#' @rdname logging.levels
+#' @export
+JLOGGER.LEVELS.MAP <- c("TRACE" = JLOGGER.TRACE,
+                        "DEBUG" = JLOGGER.DEBUG,
+                        "INFO" = JLOGGER.INFO,
+                        "WARNING" = JLOGGER.WARN,
+                        "ERROR" = JLOGGER.ERROR,
+                        "FATAL" = JLOGGER.FATAL)
+
 ## Thanks to: http://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
 
 #' @rdname logging.levels
