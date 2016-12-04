@@ -594,7 +594,7 @@ jlfname <- function() fname(8)
 color.string <- function(w,
                          color)
 {
-    paste(c(color, w, JLOGGER.STYLE.COLORS.RESET, collapse = ''))
+    paste(c(color, w, JLOGGER.STYLE.COLORS.RESET), collapse = '')
 }
 
 #' Colors
