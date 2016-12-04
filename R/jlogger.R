@@ -604,5 +604,13 @@ color.string <- function(w,
 #' @export
 get.color <- function(color.name)
 {
-    JLOGGER.COLORS[[color.name]]
+    if(!missing(color.name))
+        JLOGGER.COLORS[[color.name]]
+    else
+    {
+        cat('available colors are:\n')
+        lapply(setdiff(names(JLOGGER.COLORS), JLOGGER.LEVELS),
+               function(x) cat(color.string(x, JLOGGER.COLORS[[x]]), '\n'))
+        cat('\n')
+    }
 }
