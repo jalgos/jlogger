@@ -6,7 +6,8 @@ Description: A Logger built on top of cat, print and write, that allows the user
 Depends:
     R (>= 3.2.0)
 Suggests:
-    pbdDEMO
+    pbdDEMO,
+    testthat
 License: Jalgos License
 Encoding: UTF-8
 LazyData: true

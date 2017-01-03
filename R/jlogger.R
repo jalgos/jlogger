@@ -577,13 +577,61 @@ set.logger.prefix <- function(logger,
 ###### utility function for logging more information ####
 
 ## Returns the name of the function it was called from
-fname <- function(offset = 1)
+
+get.calling.frame <- function(fpattern = "jlog\\.(trace|debug|info|warn|error|fatal)")
 {
-    as.character(sys.calls()[[sys.nframe() - offset]])[1]
+    funcs <- sapply(sys.calls(),
+                    function(x) as.character(x)[1])
+    jlcalls <- grepl(fpattern, funcs)
+    if(!any(jlcalls))
+        stop("No call to function in call stack")
+    which(jlcalls)[1] - 1
 }
 
-jlfname <- function() fname(8)
+frame.fname <- function(num.frame)
+{
+    as.character(sys.calls()[[num.frame]])[1]    
+}
 
+#' Function name
+#'
+#' Returns the name of the function that called jlog.*
+#' @export
+function.name <- function(...)
+{
+    num.frame <- get.calling.frame(...)
+    paste0('fun: `', frame.fname(num.frame), '`')
+}
+
+function.file.name <- function(fname)
+{
+    fn <- eval(parse(text = sprintf("attr(attr(%s, 'srcref'), 'srcfile')$filename", fname)))
+    gsub(getwd(), "", fn)
+}
+
+envir.name.nframe <- function(num.frame)
+{
+    env <- parent.frame(num.frame)
+    if(isNamespace(env))
+        asNamespace(env)
+    else
+        NULL
+}
+
+#' File name
+#'
+#' Returns the name of the function that called jlog.*
+#' @export
+file.name <- function(...)
+{
+    num.frame <- get.calling.frame(...)
+    fun.name <- frame.fname(num.frame)
+    env.name <- envir.name.nframe(num.frame)
+    if(!is.null(env.name) && !grepl("::", fun.name))
+        fun.name <- paste(env.name, fun.name, sep = "::")
+    paste0('dir: "', function.file.name(fun.name), '"')
+}
+    
 ## Coloring
 #' Coloring a string
 #' 
