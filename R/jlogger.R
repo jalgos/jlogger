@@ -634,9 +634,9 @@ function.name <- function(...)
     paste0('fun: `', frame.fname(num.frame), '`')
 }
 
-function.file.name <- function(fname)
-{
-    fn <- eval(parse(text = sprintf("attr(attr(%s, 'srcref'), 'srcfile')$filename", fname)))
+function.file.name <- function(fun)
+{    
+    fn <- attr(attr(fun, 'srcref'), 'srcfile')$filename
     gsub(getwd(), "", fn)
 }
 
@@ -644,9 +644,11 @@ envir.name.nframe <- function(num.frame)
 {
     env <- parent.frame(num.frame)
     if(isNamespace(env))
-        asNamespace(env)
+        list(env = env,
+             name = asNamespace(env))
     else
-        NULL
+        list(env = env,
+             name = NULL)
 }
 
 #' File name
@@ -657,10 +659,11 @@ file.name <- function(...)
 {
     num.frame <- get.calling.frame(...)
     fun.name <- frame.fname(num.frame)
-    env.name <- envir.name.nframe(num.frame)
+    env.info <- envir.name.nframe(num.frame)
+    env.name <- env.info$name
     if(!is.null(env.name) && !grepl("::", fun.name))
         fun.name <- paste(env.name, fun.name, sep = "::")
-    paste0('dir: "', function.file.name(fun.name), '"')
+    paste0('dir: "', function.file.name(get(fun.name, envir = env.info$env)), '"')
 }
     
 ## Coloring
