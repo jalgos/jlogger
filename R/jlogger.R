@@ -138,7 +138,8 @@ JLogger <- setRefClass("JLogger",
                        fields = list(m.files = "character",
                                      m.level = "integer",
                                      m.name = "character",
-                                     m.prefix = "character"))
+                                     m.prefix = "character",
+                                     m.print.fname = "logical"))
 
 JLOGGER.init <- function(name = "",
                          files = "",
@@ -153,6 +154,7 @@ JLOGGER.init <- function(name = "",
     if(missing(level)) level <- JLOGGER.getlevel(name, logconfig)
     m.level <<- level
     m.prefix <<- prefix
+    m.print.fname <<- FALSE
 }
 
 string.level <- function(color,
@@ -216,9 +218,16 @@ JLOGGER.jlquiet <- function(jlogger, level, ...)
     level < jlogger$m.level
 }
 
-#To use for object that can't be printed with cat. Uses write.table internally
-JLOGGER.jlwrite <- function(jlfile, level, prefix, data, ..., endline = "\n")
+JLOGGER.fname.prefix <- function(jlfile)
 {
+    cat(file.name(), function.name(), '', file = jlfile, append = TRUE)
+}
+
+#To use for object that can't be printed with cat. Uses write.table internally
+JLOGGER.jlwrite <- function(jlfile, level, prefix, data, ..., print.fname, endline = "\n")
+{
+    if(print.fname)
+        JLOGGER.fname.prefix(jlfile)
     cat(as.character(Sys.time()),
         string.level(JLOGGER.COLORS[level],
                      JLOGGER.STYLE[level],
@@ -239,10 +248,13 @@ JLOGGER.jlprint <- function(jlfile,
                             ...,
                             cat.fun = cat,
                             print.fun = print,
+                            print.fname,
                             endline = "\n")
 {
     #This prints to the console so only id jlfile == ""
     if(jlfile != "") return()
+    if(print.fname)
+        JLOGGER.fname.prefix(jlfile)
     cat.fun(as.character(Sys.time()),
             string.level(JLOGGER.COLORS[level],
                          JLOGGER.STYLE[level],
@@ -263,9 +275,13 @@ JLOGGER.jlog <- function(jlfile,
                          prechar = "",
                          endline = "\n",
                          cat.fun = cat,
+                         print.fname,
                          all.rank) ## Here to be compatible with multiprocess case
 {
     if(prechar != "") cat(prechar, file = jlfile, append = TRUE)
+    if(print.fname)
+        JLOGGER.fname.prefix(jlfile)
+    
     cat.fun(as.character(Sys.time()),
             string.level(JLOGGER.COLORS[level],
                          JLOGGER.STYLE[level],
@@ -280,7 +296,7 @@ JLOGGER.jlog <- function(jlfile,
 JLOGGER.do <- function(jlogger, level, log.fun, ..., prefix = jlogger$m.prefix )
 {
     if(JLOGGER.jlquiet(jlogger, level, ...)) return()
-    lapply(jlogger$m.files, log.fun, prefix = prefix, level = level, ...)
+    lapply(jlogger$m.files, log.fun, prefix = prefix, level = level, ..., print.fname = jlogger$m.print.fname)
     invisible()
 }
 
@@ -558,6 +574,20 @@ set.logging.level <- function(logger,
 {
     if(is.character(logger)) logger <- JLoggerFactory(logger)
     logger$m.level <- level
+}
+
+#' Printing function name
+#'
+#' Changes the behaviour of the logger so it prints the function name by default
+#' @param logger JLogger object
+#' @param do Sets the behavior. If missing will return the current behaviour
+#' @export
+print.fname <- function(logger,
+                        do)
+{
+    if(missing(do))
+        return(logger$m.print.fname)
+    logger$m.print.fname <- do
 }
 
 
