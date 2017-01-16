@@ -581,7 +581,8 @@ set.logging.level <- function(logger,
 #' Changes the behaviour of the logger so it prints the function name by default
 #' @param logger JLogger object
 #' @param do Sets the behavior. If missing will return the current behaviour
-#' @export
+#' @usage print.fname(logger, do)
+#' @export print.fname
 print.fname <- function(logger,
                         do)
 {

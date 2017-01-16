@@ -4,7 +4,7 @@
 \alias{print.fname}
 \title{Printing function name}
 \usage{
-\method{print}{fname}(logger, do)
+print.fname(logger, do)
 }
 \arguments{
 \item{logger}{JLogger object}
