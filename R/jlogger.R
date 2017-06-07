@@ -139,7 +139,8 @@ JLogger <- setRefClass("JLogger",
                                      m.level = "integer",
                                      m.name = "character",
                                      m.prefix = "character",
-                                     m.print.fname = "logical"))
+                                     m.print.fname = "logical",
+                                     m.filesize = "integer"))
 
 JLOGGER.init <- function(name = "",
                          files = "",
@@ -155,6 +156,7 @@ JLOGGER.init <- function(name = "",
     m.level <<- level
     m.prefix <<- prefix
     m.print.fname <<- FALSE
+    m.filesize <<- 0L
 }
 
 string.level <- function(color,
@@ -695,4 +697,17 @@ get.color <- function(color.name)
                function(x) cat(color.string(x, JLOGGER.COLORS[[x]]), '\n'))
         cat('\n')
     }
+}
+
+#' Setting filesize
+#'
+#' Sets the logger's filesize limit before renaming it and creating a new one
+#' @param logger JLogger object
+#' @param filesize a integer
+#' @export
+set.logger.filesize <- function(logger,
+                                filesize)
+{
+    if(is.character(logger)) logger <- JLoggerFactory(logger)
+    logger$m.filesize <- filesize
 }
