@@ -225,6 +225,14 @@ JLOGGER.fname.prefix <- function(jlfile)
     cat(file.name(), function.name(), '', file = jlfile, append = TRUE)
 }
 
+#Function called when filesize is set
+compress.file <- function(jlfile)
+{
+    new_name <- paste0(jlfile, as.numeric(Sys.time()) * 100000)
+    file.rename(jlfile, new_name)
+    system(paste0("gzip ", new_name))
+}
+
 #To use for object that can't be printed with cat. Uses write.table internally
 JLOGGER.jlwrite <- function(jlfile,
                             level,
@@ -240,11 +248,7 @@ JLOGGER.jlwrite <- function(jlfile,
 
     if (jlfile != "" & filesize > 0 & !is.na(file.size(jlfile)) &
         file.size(jlfile) >= filesize) 
-    {
-        new_name <- paste0(jlfile, as.numeric(Sys.time()) * 100000)
-        file.rename(jlfile, new_name)
-        system(paste0("gzip ", new_name))
-    }
+        compress.file(jlfile)
     cat(as.character(Sys.time()),
         string.level(JLOGGER.COLORS[level],
                      JLOGGER.STYLE[level],
@@ -303,11 +307,7 @@ JLOGGER.jlog <- function(jlfile,
 
     if (jlfile != "" & filesize > 0 & !is.na(file.size(jlfile)) &
         file.size(jlfile) >= filesize) 
-    {
-        new_name <- paste0(jlfile, as.numeric(Sys.time()) * 100000)
-        file.rename(jlfile, new_name)
-        system(paste0("gzip ", new_name))
-    }
+        compress.file(jlfile)
     cat.fun(as.character(Sys.time()),
             string.level(JLOGGER.COLORS[level],
                          JLOGGER.STYLE[level],
