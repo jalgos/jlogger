@@ -226,10 +226,25 @@ JLOGGER.fname.prefix <- function(jlfile)
 }
 
 #To use for object that can't be printed with cat. Uses write.table internally
-JLOGGER.jlwrite <- function(jlfile, level, prefix, data, ..., print.fname, endline = "\n")
+JLOGGER.jlwrite <- function(jlfile,
+                            level,
+                            prefix,
+                            data,
+                            ...,
+                            print.fname,
+                            filesize,
+                            endline = "\n")
 {
     if(print.fname)
         JLOGGER.fname.prefix(jlfile)
+
+    if (jlfile != "" & filesize > 0 & !is.na(file.size(jlfile)) &
+        file.size(jlfile) >= filesize) 
+    {
+        new_name <- paste0(jlfile, as.numeric(Sys.time()) * 100000)
+        file.rename(jlfile, new_name)
+        system(paste0("gzip ", new_name))
+    }
     cat(as.character(Sys.time()),
         string.level(JLOGGER.COLORS[level],
                      JLOGGER.STYLE[level],
@@ -251,6 +266,7 @@ JLOGGER.jlprint <- function(jlfile,
                             cat.fun = cat,
                             print.fun = print,
                             print.fname,
+                            filesize,
                             endline = "\n")
 {
     #This prints to the console so only id jlfile == ""
@@ -278,12 +294,20 @@ JLOGGER.jlog <- function(jlfile,
                          endline = "\n",
                          cat.fun = cat,
                          print.fname,
+                         filesize,
                          all.rank) ## Here to be compatible with multiprocess case
 {
     if(prechar != "") cat(prechar, file = jlfile, append = TRUE)
     if(print.fname)
         JLOGGER.fname.prefix(jlfile)
-    
+
+    if (jlfile != "" & filesize > 0 & !is.na(file.size(jlfile)) &
+        file.size(jlfile) >= filesize) 
+    {
+        new_name <- paste0(jlfile, as.numeric(Sys.time()) * 100000)
+        file.rename(jlfile, new_name)
+        system(paste0("gzip ", new_name))
+    }
     cat.fun(as.character(Sys.time()),
             string.level(JLOGGER.COLORS[level],
                          JLOGGER.STYLE[level],
@@ -298,7 +322,7 @@ JLOGGER.jlog <- function(jlfile,
 JLOGGER.do <- function(jlogger, level, log.fun, ..., prefix = jlogger$m.prefix )
 {
     if(JLOGGER.jlquiet(jlogger, level, ...)) return()
-    lapply(jlogger$m.files, log.fun, prefix = prefix, level = level, ..., print.fname = jlogger$m.print.fname)
+    lapply(jlogger$m.files, log.fun, prefix = prefix, level = level, ..., print.fname = jlogger$m.print.fname, filesize = jlogger$m.filesize)
     invisible()
 }
 
@@ -703,7 +727,7 @@ get.color <- function(color.name)
 #'
 #' Sets the logger's filesize limit before renaming it and creating a new one
 #' @param logger JLogger object
-#' @param filesize a integer
+#' @param filesize is an integer
 #' @export
 set.logger.filesize <- function(logger,
                                 filesize)
