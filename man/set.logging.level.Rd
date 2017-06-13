@@ -14,4 +14,3 @@ set.logging.level(logger, level)
 \description{
 Sets the logging level of a JLogger
 }
-

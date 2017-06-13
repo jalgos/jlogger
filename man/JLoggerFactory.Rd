@@ -17,4 +17,3 @@ A JLogger object
 \description{
 Get a logger for the given handle. Creates it if it's missing.
 }
-

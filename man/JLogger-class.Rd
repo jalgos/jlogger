@@ -2,8 +2,8 @@
 % Please edit documentation in R/jlogger.R
 \docType{class}
 \name{JLogger-class}
-\alias{JLogger}
 \alias{JLogger-class}
+\alias{JLogger}
 \title{JLogger}
 \description{
 Object that handles complex logging
@@ -19,4 +19,5 @@ Object that handles complex logging
 
 \item{\code{m.prefix}}{Prefix to print before messages}
 }}
+
 

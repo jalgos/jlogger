@@ -9,4 +9,3 @@ function.name(...)
 \description{
 Returns the name of the function that called jlog.*
 }
-

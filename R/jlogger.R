@@ -311,7 +311,8 @@ compress.file <- function(jlfile, size)
     if (jlfile != "" & size > 0 & !is.na(file.size(jlfile)) &
         file.size(jlfile) >= size)
     {
-        new_name <- paste0(jlfile, as.numeric(Sys.time()) * 100000)
+        new_name <- paste0(paste0(jlfile, "."),
+                           gsub(" ", "_", Sys.time()))
         file.rename(jlfile, new_name)
         system(paste0("gzip ", new_name))
     }

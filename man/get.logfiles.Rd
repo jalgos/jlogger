@@ -15,4 +15,3 @@ Vector of file paths. Empty character is the console
 \description{
 Get the buffers a JLogger writes to
 }
-

@@ -15,4 +15,3 @@ Logging level
 \description{
 Gets the logging level of a JLogger
 }
-

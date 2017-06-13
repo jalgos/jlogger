@@ -9,4 +9,3 @@ JLoggerReset()
 \description{
 Resets all the JLoggers
 }
-

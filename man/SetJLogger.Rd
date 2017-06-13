@@ -14,4 +14,3 @@ SetJLogger(name, jlogger, ...)
 \description{
 Manually maps a logger to a handle
 }
-

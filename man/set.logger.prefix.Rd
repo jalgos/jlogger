@@ -14,4 +14,3 @@ set.logger.prefix(logger, prefix)
 \description{
 Sets the logger's prefix (string that is printed after the date)
 }
-

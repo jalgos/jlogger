@@ -14,4 +14,3 @@ set.logfiles(logger, files)
 \description{
 Sets the log files of JLogger
 }
-

@@ -12,4 +12,3 @@ jlflush(jlogger)
 \description{
 Flushes the current buffers.
 }
-

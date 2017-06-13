@@ -20,4 +20,7 @@ Error messages are to be put when the program is out of its range of function. I
 Fatal messages are the highest level of logging and they indicate that the program is about to stop due to an error it cannot recover from and anything more severe.\cr
 JLoggers offer several ways of messaging. \code{jlog*} is a simple wrapper around \code{cat}, \code{jlwrite*} wraps \code{write} and \code{jlprint*} wrap \code{print}. Each function categories can be use to handle different types of data.\cr
 }
+\author{
+\strong{Maintainer}: Sébastien Lamy de la Chapelle \email{sebastien@jalgos.com}
 
+}

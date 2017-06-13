@@ -14,4 +14,3 @@ color.string(w, color)
 \description{
 Colors a word when printing
 }
-

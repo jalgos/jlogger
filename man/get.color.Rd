@@ -12,4 +12,3 @@ get.color(color.name)
 \description{
 Returns the ASCII code of a given
 }
-
