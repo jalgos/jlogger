@@ -14,4 +14,3 @@ add.logfiles(logger, files)
 \description{
 Adds log files to the JLogger files list
 }
-

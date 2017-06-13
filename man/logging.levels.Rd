@@ -2,19 +2,19 @@
 % Please edit documentation in R/jlogger.R
 \docType{data}
 \name{logging.levels}
-\alias{JLOGGER.COLORS}
+\alias{logging.levels}
+\alias{JLOGGER.TRACE}
 \alias{JLOGGER.DEBUG}
-\alias{JLOGGER.DEFAULT.LEVEL}
+\alias{JLOGGER.INFO}
+\alias{JLOGGER.WARN}
 \alias{JLOGGER.ERROR}
 \alias{JLOGGER.FATAL}
-\alias{JLOGGER.INFO}
 \alias{JLOGGER.LEVELS}
 \alias{JLOGGER.LEVELS.MAP}
+\alias{JLOGGER.COLORS}
 \alias{JLOGGER.STYLE}
 \alias{JLOGGER.STYLE.COLORS.RESET}
-\alias{JLOGGER.TRACE}
-\alias{JLOGGER.WARN}
-\alias{logging.levels}
+\alias{JLOGGER.DEFAULT.LEVEL}
 \title{Logging levels}
 \format{An object of class \code{integer} of length 1.}
 \usage{
@@ -46,4 +46,3 @@ JLOGGER.DEFAULT.LEVEL
 Constants for logging level
 }
 \keyword{datasets}
-

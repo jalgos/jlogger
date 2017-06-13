@@ -14,4 +14,3 @@ print.fname(logger, do)
 \description{
 Changes the behaviour of the logger so it prints the function name by default
 }
-
