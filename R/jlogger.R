@@ -312,7 +312,7 @@ compress.file <- function(jlfile, size)
         file.size(jlfile) >= size)
     {
         new_name <- paste0(paste0(jlfile, "."),
-                           gsub(" ", "_", Sys.time()))
+                           format(Sys.time(), "%Y-%m-%d_%H:%M:%OS6"))
         file.rename(jlfile, new_name)
         system(paste0("gzip ", new_name))
     }
