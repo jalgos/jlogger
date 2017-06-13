@@ -232,7 +232,6 @@ JLOGGER.jlwrite <- function(jlfile,
                             data,
                             ...,
                             print.fname,
-                            filesize,
                             endline = "\n")
 {
     if(print.fname)
@@ -259,7 +258,6 @@ JLOGGER.jlprint <- function(jlfile,
                             cat.fun = cat,
                             print.fun = print,
                             print.fname,
-                            filesize,
                             endline = "\n")
 {
     #This prints to the console so only id jlfile == ""
@@ -287,7 +285,6 @@ JLOGGER.jlog <- function(jlfile,
                          endline = "\n",
                          cat.fun = cat,
                          print.fname,
-                         filesize,
                          all.rank) ## Here to be compatible with multiprocess case
 {
     if(prechar != "") cat(prechar, file = jlfile, append = TRUE)
@@ -321,7 +318,8 @@ compress.file <- function(jlfile, size)
 JLOGGER.do <- function(jlogger, level, log.fun, ..., prefix = jlogger$m.prefix )
 {
     if(JLOGGER.jlquiet(jlogger, level, ...)) return()
-    lapply(jlogger$m.files, log.fun, prefix = prefix, level = level, ..., print.fname = jlogger$m.print.fname, filesize = jlogger$m.filesize)
+    lapply(jlogger$m.files, log.fun, prefix = prefix,
+           level = level, ..., print.fname = jlogger$m.print.fname)
     lapply(jlogger$m.files, compress.file, size = jlogger$m.filesize)
     invisible()
 }
