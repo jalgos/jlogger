@@ -23,4 +23,9 @@ JLoggers offer several ways of messaging. \code{jlog*} is a simple wrapper aroun
 \author{
 \strong{Maintainer}: Sébastien Lamy de la Chapelle \email{sebastien@jalgos.com}
 
+Authors:
+\itemize{
+  \item Thomas Sanzey \email{thomas@jalgos.com}
+}
+
 }

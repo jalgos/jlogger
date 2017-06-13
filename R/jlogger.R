@@ -315,11 +315,19 @@ compress.file <- function(jlfile, size)
     }
 }
 
-JLOGGER.do <- function(jlogger, level, log.fun, ..., prefix = jlogger$m.prefix )
+JLOGGER.do <- function(jlogger,
+                       level,
+                       log.fun,
+                       ...,
+                       prefix = jlogger$m.prefix)
 {
     if(JLOGGER.jlquiet(jlogger, level, ...)) return()
-    lapply(jlogger$m.files, log.fun, prefix = prefix,
-           level = level, ..., print.fname = jlogger$m.print.fname)
+    lapply(jlogger$m.files,
+           log.fun,
+           prefix = prefix,
+           level = level,
+           ...,
+           print.fname = jlogger$m.print.fname)
     lapply(jlogger$m.files, compress.file, size = jlogger$m.filesize)
     invisible()
 }
