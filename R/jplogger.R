@@ -73,8 +73,8 @@ setMethod("jlprint.fatal", "JPLogger", function(jlogger, ..., print.fun = jlp.pr
 #' @export
 JPLoggerFactory <- function(name, ..., reset = FALSE)
 {
-    if(!name %in% ls(JLOGGER.ENV) || reset) assign(name, JPLogger(name, ...), JLOGGER.ENV)
-    jlog <- get(name, JLOGGER.ENV)
-    if(!is(jlog, "JPLogger")) assign(name, JPLogger(name, ...), JLOGGER.ENV)
+    if(!name %in% ls(JLOGGER.ENV$loggers) || reset) assign(name, JPLogger(name, ...), JLOGGER.ENV$loggers)
+    jlog <- get(name, JLOGGER.ENV$loggers)
+    if(!is(jlog, "JPLogger")) assign(name, JPLogger(name, ...), JLOGGER.ENV$loggers)
     else jlog
 }

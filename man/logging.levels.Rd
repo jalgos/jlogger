@@ -14,7 +14,6 @@
 \alias{JLOGGER.COLORS}
 \alias{JLOGGER.STYLE}
 \alias{JLOGGER.STYLE.COLORS.RESET}
-\alias{JLOGGER.DEFAULT.LEVEL}
 \title{Logging levels}
 \format{An object of class \code{integer} of length 1.}
 \usage{
@@ -39,8 +38,6 @@ JLOGGER.COLORS
 JLOGGER.STYLE
 
 JLOGGER.STYLE.COLORS.RESET
-
-JLOGGER.DEFAULT.LEVEL
 }
 \description{
 Constants for logging level

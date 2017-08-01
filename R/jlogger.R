@@ -83,11 +83,25 @@ JLOGGER.STYLE <- c(TRACE = '',
 #' @export
 JLOGGER.STYLE.COLORS.RESET <- '\033[0m'
 
-#' @rdname logging.levels
-#' @export
-JLOGGER.DEFAULT.LEVEL <- JLOGGER.DEBUG
-
 JLOGGER.ENV <- new.env()
+
+JLOGGER.ENV$DEFAULT.LEVEL <- JLOGGER.DEBUG
+
+JLOGGER.ENV$loggers <- new.env()
+
+#' Getting / setting Default Level
+#'
+#' Gets or sets jlogger's default level to `new.level`
+#' @param new.level If provided will change jlogger's default level to it
+#' @return Returns the old level
+#' @export
+jlogger.default.level <- function(new.level)
+{
+    old.level <- JLOGGER.ENV$DEFAULT.LEVEL
+    if(!missing(new.level))
+        JLOGGER.ENV$DEFAULT.LEVEL <- new.level
+    old.level
+}
 
 #' JLogger Factory
 #'
@@ -98,8 +112,8 @@ JLOGGER.ENV <- new.env()
 #' @export
 JLoggerFactory <- function(name, ..., reset = FALSE)
 {
-    if(!name %in% ls(JLOGGER.ENV) || reset) assign(name, JLogger(name, ...), JLOGGER.ENV)
-    get(name, JLOGGER.ENV)
+    if(!name %in% ls(JLOGGER.ENV$loggers) || reset) assign(name, JLogger(name, ...), JLOGGER.ENV$loggers)
+    get(name, JLOGGER.ENV$loggers)
 }
 
 #' JLoggerReset
@@ -108,7 +122,7 @@ JLoggerFactory <- function(name, ..., reset = FALSE)
 #' @export
 JLoggerReset <- function()
 {
-    rm(list = ls(env = JLOGGER.ENV), envir = JLOGGER.ENV)
+    rm(list = ls(env = JLOGGER.ENV$loggers), envir = JLOGGER.ENV$loggers)
 }
 
 #' Set an indivual JLogger
@@ -119,8 +133,7 @@ JLoggerReset <- function()
 #' @export
 SetJLogger <- function(name, jlogger, ...)
 {
-    if(!"JLOGGER.ENV" %in% ls(.GlobalEnv)) JLOGGER.ENV <<- new.env()
-    assign(name, jlogger, JLOGGER.ENV)
+    assign(name, jlogger, JLOGGER.ENV$loggers)
 }
 
 ## We want the JLogger to be a ref class so the prefix can be changed without having to be propagated
@@ -194,7 +207,7 @@ JLOGGER.flush <- function(jlfile)
 
 JLOGGER.getlevel <- function(name, logconfig)
 {
-    if(missing(logconfig) || is.null(logconfig)) return(JLOGGER.DEFAULT.LEVEL)
+    if(missing(logconfig) || is.null(logconfig)) return(JLOGGER.ENV$DEFAULT.LEVEL)
     level <- 0L
     for(lv in JLOGGER.LEVELS)
     {
