@@ -721,6 +721,8 @@ file.name <- function(...)
 color.string <- function(w,
                          color)
 {
+    if(color %in% names(JLOGGER.COLORS))
+        color <- get.color(color)
     paste(c(color, w, JLOGGER.STYLE.COLORS.RESET), collapse = '')
 }
 
