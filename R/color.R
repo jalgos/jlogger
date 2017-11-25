@@ -54,7 +54,7 @@ color.string <- function(w,
 {
     if(color %in% names(JLOGGER.COLORS))
         color <- get.color(color)
-    paste(c(color, w, JLOGGER.STYLE.COLORS.RESET), collapse = '')
+    paste(c(color, paste(w, collapse = " "), JLOGGER.STYLE.COLORS.RESET), collapse = '')
 }
 
 #' Colors
