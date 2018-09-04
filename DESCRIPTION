@@ -1,6 +1,6 @@
 Package: jlogger
 Title: A simple logger written with cat
-Version: 0.0.0.9000
+Version: 1.0.1
 Authors@R: c(person("Sébastien", "Lamy de la Chapelle", email = "sebastien@jalgos.com", role = c("aut", "cre")),
              person("Thomas", "Sanzey", email = "thomas@jalgos.com", role = c("aut")))
 Description: A Logger built on top of cat, print and write, that allows the user to seamlessly log messages to files or the console
