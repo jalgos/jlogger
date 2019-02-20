@@ -2,7 +2,9 @@
 ## depends on util.R
 
 
-JLogger <- setRefClass("JLogger", fields = list(m.level = "integer", m.file = "character"))
+JLogger <- setRefClass("JLogger",
+                       fields = list(m.level = "integer",
+                                     m.file = "character"))
 
 #' @title Logging levels
 #' @name logging.levels
@@ -32,7 +34,12 @@ JLOGGER.FATAL <- 6L
 
 #' @rdname logging.levels
 #' @export
-JLOGGER.LEVELS <- c("TRACE", "DEBUG", "INFO", "WARNING", "ERROR", "FATAL")
+JLOGGER.LEVELS <- c("TRACE",
+                    "DEBUG",
+                    "INFO",
+                    "WARNING",
+                    "ERROR",
+                    "FATAL")
 
 #' @rdname logging.levels
 #' @export
