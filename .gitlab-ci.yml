@@ -12,6 +12,7 @@ variables:
 
 default:
   before_script:
+    - mkdir -p lib
     - Rscript ci/dependencies.R
 
 build:
