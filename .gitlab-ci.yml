@@ -1,4 +1,4 @@
-image: reg.jalgos.ai/r-mpi:4.0.2
+image: reg.jalgos.ai/r-mpi-jalgos:4.0.2
 
 stages:
   - build
