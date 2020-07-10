@@ -1,4 +1,4 @@
-image: reg.jalgos.ai/r-jalgos:4.0.2
+image: reg.jalgos.ai/r-mpi:4.0.2
 
 stages:
   - build
@@ -15,12 +15,12 @@ default:
     - mkdir -p lib
     - Rscript ci/dependencies.R
 
-# build:
-#   stage: build
-#   script:
-#     - Rscript ci/build.R
-#   only:
-#     - branches
+build:
+  stage: build
+  script:
+    - Rscript ci/build.R
+  only:
+    - branches
 
 check:
   stage: check
