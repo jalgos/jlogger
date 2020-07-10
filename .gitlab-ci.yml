@@ -15,12 +15,12 @@ default:
     - mkdir -p lib
     - Rscript ci/dependencies.R
 
-build:
-  stage: build
-  script:
-    - Rscript ci/build.R
-  only:
-    - branches
+# build:
+#   stage: build
+#   script:
+#     - Rscript ci/build.R
+#   only:
+#     - branches
 
 check:
   stage: check
