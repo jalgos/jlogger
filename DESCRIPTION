@@ -5,7 +5,7 @@ Authors@R: c(person("Sébastien", "Lamy de la Chapelle", email = "sebastien@jalg
              person("Thomas", "Sanzey", email = "thomas@jalgos.com", role = c("aut")))
 Description: A Logger built on top of cat, print and write, that allows the user to seamlessly log messages to files or the console
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.5.0)
 Suggests:
     pbdDEMO,
     testthat
