@@ -7,6 +7,9 @@
 \usage{
 JPLoggerFactory(name, ..., reset = FALSE)
 }
+\description{
+Parallel JLoggers
+}
 \details{
 JPLogger are a version of JLogger that can be used with pbdR. It uses \code{comm.cat} internally, so all parameters are forwarded to it. \code{rank.print} can be set as well as other options. \cr
 JPLogger will create a file for each process. Remember to set a different one for each process unless you want them to appear on only one file.
