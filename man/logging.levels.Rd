@@ -15,7 +15,29 @@
 \alias{JLOGGER.STYLE}
 \alias{JLOGGER.STYLE.COLORS.RESET}
 \title{Logging levels}
-\format{An object of class \code{character} of length 38.}
+\format{
+An object of class \code{character} of length 38.
+
+An object of class \code{integer} of length 1.
+
+An object of class \code{integer} of length 1.
+
+An object of class \code{integer} of length 1.
+
+An object of class \code{integer} of length 1.
+
+An object of class \code{integer} of length 1.
+
+An object of class \code{integer} of length 1.
+
+An object of class \code{character} of length 6.
+
+An object of class \code{integer} of length 6.
+
+An object of class \code{character} of length 6.
+
+An object of class \code{character} of length 1.
+}
 \usage{
 JLOGGER.COLORS
 
