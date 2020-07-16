@@ -4,11 +4,11 @@
 `.` <- list
 jspackages <- .("utils" = .(c('jconfig', version = "1.0.5")))
 
-# jsroot::dependencies(jspackages = jspackages,
-#                      cran.packages = .(
-#                          'RJSONIO'
-#                          #'track',
-#                          #'uuid'
-#                      ),
-#                      quiet = FALSE)
+jsroot::dependencies(jspackages = jspackages,
+                    #  cran.packages = .(
+                    #      'RJSONIO'
+                    #      #'track',
+                    #      #'uuid'
+                    #  ),
+                     quiet = FALSE)
 
