@@ -3,19 +3,29 @@
 \name{jlp.print}
 \alias{jlp.print}
 \alias{jlp.cat}
-\alias{jlp.print}
 \title{Print In PBDR context}
 \usage{
-jlp.cat(..., rank.print = integer(), all.rank = length(rank.print) == 0L,
-  barrier = FALSE)
+jlp.cat(
+  ...,
+  rank.print = integer(),
+  all.rank = length(rank.print) == 0L,
+  barrier = FALSE
+)
 
-jlp.print(..., rank.print = integer(), all.rank = length(rank.print) == 0L,
-  barrier = FALSE)
+jlp.print(
+  ...,
+  rank.print = integer(),
+  all.rank = length(rank.print) == 0L,
+  barrier = FALSE
+)
 }
 \arguments{
 \item{...}{to be forwarded to \code{comm.cat} or \code{comm.print}}
 
 \item{all.rank}{Should all the rank partake in the printing}
+}
+\description{
+Print In PBDR context
 }
 \section{Functions}{
 \itemize{
