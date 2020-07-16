@@ -10,7 +10,7 @@ Depends:
 Suggests:
     testthat
 Imports:
-    jconfig,
+    jconfig (>= 1.0.5),
     methods
 License: Jalgos License
 Encoding: UTF-8

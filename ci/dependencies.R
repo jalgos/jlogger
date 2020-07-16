@@ -1,6 +1,5 @@
 .libPaths("lib")
 
-
 `.` <- list
 jspackages <- .("utils" = .(c('jconfig', version = "1.0.5")))
 

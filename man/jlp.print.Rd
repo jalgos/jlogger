@@ -5,19 +5,11 @@
 \alias{jlp.cat}
 \title{Print In PBDR context}
 \usage{
-jlp.cat(
-  ...,
-  rank.print = integer(),
-  all.rank = length(rank.print) == 0L,
-  barrier = FALSE
-)
+jlp.cat(..., rank.print = integer(), all.rank = length(rank.print) ==
+  0L, barrier = FALSE)
 
-jlp.print(
-  ...,
-  rank.print = integer(),
-  all.rank = length(rank.print) == 0L,
-  barrier = FALSE
-)
+jlp.print(..., rank.print = integer(), all.rank = length(rank.print) ==
+  0L, barrier = FALSE)
 }
 \arguments{
 \item{...}{to be forwarded to \code{comm.cat} or \code{comm.print}}
