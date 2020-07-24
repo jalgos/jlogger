@@ -1,4 +1,3 @@
-.libPaths("lib")
 
 source("ci/dependencies.R")
 df <- as.data.frame(devtools::test())
