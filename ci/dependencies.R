@@ -1,15 +1,9 @@
 .libPaths("lib")
 
-
 `.` <- list
-jspackages <- .("utils" = .(c('jconfig', version = "v1.0.2")))
+jspackages <- .("utils" = .(c('jconfig', version = "1.0.5")))
 
 jsroot::dependencies(jspackages = jspackages,
-                     cran.packages = .(
-                         'pbdMPI'
-                         #'RJSONIO',
-                         #'track',
-                         #'uuid'
-                     ),
+                     cran.packages = .('RJSONIO'),
                      quiet = FALSE)
 
