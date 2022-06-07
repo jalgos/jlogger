@@ -311,6 +311,7 @@ JLOGGER.jlog.json <- function(jlfile,
                               ...,
                               print.fname,
                               cat.fun = cat,
+                              endline = "\n",
                               prefix)
 {
     tc <- textConnection("mess", "w", local = TRUE)
@@ -321,6 +322,7 @@ JLOGGER.jlog.json <- function(jlfile,
                                   context = prefix,
                                   message = mess),
                              auto_unbox = TRUE),
+            endline = "\n",
             file = jlfile,
             append = TRUE)
 }
