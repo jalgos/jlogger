@@ -2,10 +2,6 @@
 ## depends on util.R
 
 
-JLogger <- setRefClass("JLogger",
-                       fields = list(m.level = "integer",
-                                     m.file = "character"))
-
 #' @title Logging levels
 #' @name logging.levels
 #' @description Constants for logging level
@@ -116,6 +112,18 @@ SetJLogger <- function(name, jlogger, ...)
     assign(name, jlogger, JLOGGER.ENV$loggers)
 }
 
+JLOGGER.ENV$json.printing <- FALSE
+
+#' Setting JSON Printing
+#'
+#' Sets the default json printing behaviour
+#' @param json.printing New behaviour for printing
+#' @export
+jlogger.default.json.printing <- function(json.printing)
+{
+    JLOGGER.ENV$json.printing <- json.printing
+}
+
 ## We want the JLogger to be a ref class so the prefix can be changed without having to be propagated
 ## m.files can be several file if we want to write to several connections at the same time
 #' JLogger
@@ -133,13 +141,15 @@ JLogger <- setRefClass("JLogger",
                                      m.name = "character",
                                      m.prefix = "character",
                                      m.print.fname = "logical",
-                                     m.filesize = "integer"))
+                                     m.filesize = "integer",
+                                     m.json = "logical"))
 
 JLOGGER.init <- function(name = "",
                          files = "",
                          prefix = name,
                          level,
                          config = jconfig::get.config(...),
+                         json = JLOGGER.ENV$json.printing,
                          ...,
                          logconfig = config$jlogger)
 {
@@ -150,6 +160,7 @@ JLOGGER.init <- function(name = "",
     m.prefix <<- prefix
     m.print.fname <<- FALSE
     m.filesize <<- 0L
+    m.json <<- json
 }
 
 string.level <- function(color,
@@ -270,15 +281,15 @@ JLOGGER.jlprint <- function(jlfile,
     cat.fun(endline, file = jlfile, append = TRUE, ...)
 }
 
-JLOGGER.jlog <- function(jlfile,
-                         level,
-                         ...,
-                         prefix,
-                         prechar = "",
-                         endline = "\n",
-                         cat.fun = cat,
-                         print.fname,
-                         all.rank) ## Here to be compatible with multiprocess case
+JLOGGER.jlog.text <- function(jlfile,
+                              level,
+                              ...,
+                              prefix,
+                              prechar = "",
+                              endline = "\n",
+                              cat.fun = cat,
+                              print.fname,
+                              all.rank) ## Here to be compatible with multiprocess case
 {
     if(prechar != "") cat(prechar, file = jlfile, append = TRUE)
     if(print.fname)
@@ -293,6 +304,34 @@ JLOGGER.jlog <- function(jlfile,
             endline,
             file = jlfile,
             append = TRUE)
+}
+
+JLOGGER.jlog.json <- function(jlfile,
+                              level,
+                              ...,
+                              print.fname,
+                              cat.fun = cat,
+                              prefix)
+{
+    tc <- textConnection("mess", "w", local = TRUE)
+    cat(..., file = tc)
+    close(tc)
+    cat.fun(jsonlite::toJSON(list(level = JLOGGER.LEVELS[level],
+                                  timestamp = as.character(Sys.time()),
+                                  context = prefix,
+                                  message = mess),
+                             auto_unbox = TRUE),
+            file = jlfile,
+            append = TRUE)
+}
+
+JLOGGER.jlog <- function(json,
+                         ...)
+{
+    if(json)
+        JLOGGER.jlog.json(...)
+    else
+        JLOGGER.jlog.text(...)
 }
 
 #Function called when filesize is set
@@ -319,6 +358,7 @@ JLOGGER.do <- function(jlogger,
            log.fun,
            prefix = prefix,
            level = level,
+           json = jlogger$m.json,
            ...,
            print.fname = jlogger$m.print.fname)
     lapply(jlogger$m.files, compress.file, size = jlogger$m.filesize)
@@ -357,7 +397,6 @@ jl.print.fatal <- function(jlogger, ...) JLOGGER.do(jlogger, JLOGGER.FATAL, JLOG
 #' @param ... Objects to be printed. They will be handled by the lower level functions
 #' @param prechar A character that can be printed before the message. Useful if you want to have a statement that erases itself.
 #' @param endline What should be used as an endline delimiter. Defaults to newline.
-                         
 NULL
 
 #' @rdname logging.funs
@@ -599,6 +638,19 @@ set.logging.level <- function(logger,
 {
     if(is.character(logger)) logger <- JLoggerFactory(logger)
     logger$m.level <- level
+}
+
+#' Setting JSON printing
+#'
+#' Sets whether printing in done in JSON format
+#' @param logger JLogger object
+#' @param json.printing logical deciding whether printing will be done through json
+#' @export
+set.json.printing <- function(logger,
+                              json.printing)
+{
+    if(is.character(logger)) logger <- JLoggerFactory(logger)
+    logger$m.json <- json.printing
 }
 
 #' Printing function name
